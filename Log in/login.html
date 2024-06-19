@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - ChefMate</title>
+    <link rel="stylesheet" href="login.css"> <!-- Linking to the CSS file -->
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script>
+        function validateForm() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            var isValid = true;
+
+            if (username === '') {
+                isValid = false;
+                document.getElementById('username-validation').innerText = 'Please enter your username.';
+            } else {
+                document.getElementById('username-validation').innerText = '';
+            }
+
+            if (password === '') {
+                isValid = false;
+                document.getElementById('password-validation').innerText = 'Please enter your password.';
+            } else {
+                document.getElementById('password-validation').innerText = '';
+            }
+
+            return isValid;
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>ChefMate</h1>
+        <nav>
+            <a href="../Home/freelancer/index.html">Home</a> <!-- Corrected relative path to home page -->
+            <a href="../Recipe/recipe.html">Recipes</a> <!-- Corrected relative path to recipes page -->
+            <a href="../Account/account.html">My Account</a> <!-- Corrected relative path to account page -->
+        </nav>
+    </header>
+    
+    <main>
+        <section class="login">
+            <h2>Login</h2>
+            <form action="/submit_login" method="POST" onsubmit="return validateForm()">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+                <p class="validation" id="username-validation"></p>
+                
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <p class="validation" id="password-validation"></p>
+                
+                <button type="submit" class="login-btn">Login</button>
+            </form>
+            <p class="forgot-password"><a href="#" style="color: black;">Forgot your password?</a></p>
+            <p class="signup-link">Don't have an account? <a href="../Sign up/signup.html">Sign Up</a></p>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-section">
+            <h3>Location</h3>
+            <p>2215 John Daniel Drive, Clark, MO 65243</p>
+        </div>
+        <div class="footer-section">
+            <h3>Follow Us</h3>
+            <p>Facebook | Twitter | Instagram</p>
+        </div>
+        <div class="footer-section">
+            <h3>Our Vision</h3>
+            <p>Unleashing culinary creativity, fostering connections, and building a global community around food.</p>
+        </div>
+    </footer>
+    <footer class="copyright py-4 text-center text-white">
+        <div class="container"><small>Copyright © ChefMate 2024</small></div>
+    </footer>
+</body>
+</html>

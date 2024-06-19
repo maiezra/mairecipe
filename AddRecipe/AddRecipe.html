@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add a Recipe</title>
+    <link rel="stylesheet" href="AddRecipe.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
+</head>
+<body>
+    <header>
+        <h1>ChefMate</h1>
+        <nav>
+            <a href="../Home/freelancer/index.html">Home</a> <!-- Corrected relative path to home page -->
+            <a href="../Recipe/recipe.html">Recipes</a> <!-- Corrected relative path to recipes page -->
+            <a href="../Account/account.html">My Account</a> <!-- Corrected relative path to account page -->
+        </nav>
+    </header>
+
+<main>  
+<div class="container">
+    <h1>Add a Recipe</h1>
+    <form action="#" method="post">
+        <label for="recipeName">Recipe Name:</label>
+        <input type="text" id="recipeName" name="recipeName" required>
+
+        <label for="prepTime">Preparation Time (minutes):</label>
+        <input type="text" id="prepTime" name="prepTime" required>
+
+        <label>Ingredients:</label>
+        <input list="ingredients" id="ingredient" name="ingredient">
+        <datalist id="ingredients">
+            <option value="Flour">
+            <option value="Sugar">
+            <option value="Eggs">
+            <option value="Butter">
+            <option value="Milk">
+        </datalist>
+
+        <label for="difficulty">Level of Difficulty:</label>
+        <select id="difficulty" name="difficulty" required>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="difficult">Difficult</option>
+        </select>
+
+        <label for="method">Method of Preparation:</label>
+        <textarea id="method" name="method" rows="5" required></textarea>
+
+        <button type="submit">Add Recipe</button>
+    </form>
+</div>
+</main>   
+<footer>
+    <div class="footer-section">
+        <h3>Location</h3>
+        <p>2215 John Daniel Drive, Clark, MO 65243</p>
+    </div>
+    <div class="footer-section">
+        <h3>Follow Us</h3>
+        <p>Facebook | Twitter | Instagram</p>
+    </div>
+    <div class="footer-section">
+        <h3>Our Vision</h3>
+        <p>Unleashing culinary creativity, fostering connections, and building a global community around food.</p>
+    </div>
+</footer>
+<footer class="copyright py-4 text-center text-white">
+    <div class="container1"><small>Copyright © ChefMate 2024</small></div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewx" content="width=device-width, initial-scale=1.0">
+    <title>ChefMate Recipe Page</title>
+    <link rel="stylesheet" href="recipe.css"> <!-- Linking to the CSS file -->
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>ChefMate</h1>
+        <nav>
+            <a href="../Home/freelancer/index.html">Home</a> <!-- Corrected relative path to home page -->
+            <a href="../recipes/recipes.html">Recipes</a> <!-- Corrected relative path to recipes page -->
+            <a href="account.html">My Account</a> <!-- Corrected relative path to account page -->
+        </nav>
+    </header>
+    
+    <main>
+        <!-- Recipe Section -->
+        <section class="recipe">
+            <h2>Recipe Title</h2>
+            <div class="ingredients">
+                <h3>Ingredients</h3>
+                <ul>
+                    <li>Ingredient 1</li>
+                    <li>Ingredient 2</li>
+                    <li>Ingredient 3</li>
+                    <!-- Add more ingredients as needed -->
+                </ul>
+            </div>
+            <div class="instructions">
+                <h3>Instructions</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque.</p>
+                <p>Another instruction...</p>
+                <!-- Add more instructions as needed -->
+            </div>
+        </section>
+        
+        <!-- Share Recipe Section -->
+        <section class="share-recipe">
+            <h2>Share Recipe</h2>
+            <div class="social-icons">
+                <!-- Facebook Share -->
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://example.com/recipe" class="facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <!-- WhatsApp Share -->
+                <a href="whatsapp://send?text=Check out this delicious recipe: https://example.com/recipe" class="whatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <!-- Gmail Share -->
+                <a href="mailto:?subject=Check out this delicious recipe&body=Hi,%0D%0A%0D%0ACheck out this delicious recipe: https://example.com/recipe" class="gmail" target="_blank"><i class="fas fa-envelope"></i></a>
+            </div>
+        </section>
+    </main>
+        
+    <!-- Button to create a new recipe -->
+    <a href="../AddRecipe/AddRecipe.html" class="create-recipe-button">Create a Recipe</a>
+    
+    <footer>
+        <div class="footer-section">
+            <h3>Location</h3>
+            <p>2215 John Daniel Drive
+                Clark, MO 65243</p>
+        </div>
+        <div class="footer-section">
+            <h3>Follow Us</h3>
+            <p>Facebook | Twitter | Instagram</p>
+        </div>
+        <div class="footer-section">
+            <h3>Our Vision</h3>
+            <p>Unleashing culinary creativity, fostering connections, and building a global community around food.</p>
+        </div>
+    </footer>
+    <footer class="copyright py-4 text-center text-white">
+        <div class="container"><small class="pre-wrap">Copyright © ChefMate 2024 </small></div>
+    </footer>
+
+    <!-- Your other HTML content -->
+
+    <!-- JavaScript (Optional) -->
+    <script>
+        // JavaScript to open share URLs when icons are clicked
+        document.querySelectorAll('.social-icons a').forEach(icon => {
+            icon.addEventListener('click', function(event) {
+                event.stopPropagation();
+            });
+        });
+    </script>
+</body>
+</html>
