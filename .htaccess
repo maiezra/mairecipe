@@ -1,78 +1,16 @@
 # Enable URL rewriting
 RewriteEngine On
 
-# Redirect all traffic to HTTPS (uncomment if you have SSL configured)
-# RewriteCond %{HTTPS} !=on
-# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-
 # Redirect all requests to index.php if the requested file or directory doesn't exist
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . index.php [L]
 
-# Security: Prevent directory listing
+# Prevent directory listing
 Options -Indexes
 
-# Security: Protect .htaccess file
+# Protect .htaccess file
 <Files .htaccess>
     Order Allow,Deny
     Deny from all
 </Files>
-
-# Security: Protect sensitive PHP files
-<FilesMatch "\.(inc|php|php5|php7|phps)$">
-    Order Allow,Deny
-    Deny from all
-</FilesMatch>
-
-# Security: Disable access to configuration files
-<FilesMatch "(^|/)\.([Hh][Tt][AaPp]|[Dd][Ss]_[Ss])">
-    Order allow,deny
-    Deny from all
-</FilesMatch>
-
-# Custom 404 page
-ErrorDocument 404 /404.html
-
-# Set default charset
-AddDefaultCharset UTF-8
-
-# Disable script execution in the uploads directory (if any)
-<Directory /var/www/html/mairecipes/uploads>
-    Options -ExecCGI
-    SetHandler default-handler
-</Directory>
-
-# Leverage browser caching
-<IfModule mod_expires.c>
-    ExpiresActive On
-    ExpiresByType image/jpg "access plus 1 year"
-    ExpiresByType image/jpeg "access plus 1 year"
-    ExpiresByType image/gif "access plus 1 year"
-    ExpiresByType image/png "access plus 1 year"
-    ExpiresByType text/css "access plus 1 month"
-    ExpiresByType application/pdf "access plus 1 month"
-    ExpiresByType text/x-javascript "access plus 1 month"
-    ExpiresByType application/x-shockwave-flash "access plus 1 month"
-    ExpiresByType image/x-icon "access plus 1 year"
-    ExpiresDefault "access plus 2 days"
-</IfModule>
-
-# Gzip compression
-<IfModule mod_deflate.c>
-    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/json application/javascript
-</IfModule>
-
-# Custom settings for the mairecipes project can be added below
-
-# Protect PHP sessions from being hijacked
-php_flag session.cookie_httponly On
-php_flag session.cookie_secure On
-
-# Redirect to a custom login page if not authenticated (example)
-# RewriteCond %{REQUEST_URI} ^/recipe_add\.php$ [OR]
-# RewriteCond %{REQUEST_URI} ^/recipe_view\.php$
-# RewriteCond %{HTTP_COOKIE} !^.*user_id.*$
-# RewriteRule ^login.php [L]
-
-# Additional custom rules can go here
