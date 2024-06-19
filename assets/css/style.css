@@ -23,7 +23,7 @@
   
   body {
       font-family: 'Montserrat', sans-serif; /* Change font to Montserrat */
-      margin: 0;
+      margin: 6rem 0!important;
       padding: 0;
       background-color: #f9f9f9;
   }
