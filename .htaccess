@@ -1,0 +1,24 @@
+# Enable URL rewriting
+RewriteEngine On
+
+# Redirect to HTTPS (if you have SSL configured)
+# RewriteCond %{HTTPS} !=on
+# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Redirect all requests to index.php if the requested file or directory doesn't exist
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . index.php [L]
+
+# Security: Prevent directory listing
+Options -Indexes
+
+# Security: Protect .htaccess file
+<Files .htaccess>
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+# Additional custom settings can be added here
+
+RewriteRule ^test.html$ /index.php [L]
