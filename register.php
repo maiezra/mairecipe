@@ -1,4 +1,5 @@
 <?php
+ob_start(); // Start output buffering
 require __DIR__ . '/includes/db.php';
 require __DIR__ . '/includes/functions.php';
 include __DIR__ . '/includes/header.php';
@@ -20,7 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $meal_preferences = implode(', ', $_POST['meal_preferences']);
     $newsletter = isset($_POST['newsletter']) ? 1 : 0;
 
-    if ($password !== $confirm_password) {
+    // Validate password confirmation
+    if ($password != $confirm_password) {
         $error = "Passwords do not match.";
     } else {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
@@ -37,16 +39,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->bindParam(':dietary_restrictions', $dietary_restrictions);
         $stmt->bindParam(':meal_preferences', $meal_preferences);
         $stmt->bindParam(':newsletter', $newsletter);
-            header("Location: registration_success.php");
-            exit();
 
         if ($stmt->execute()) {
+            error_log("User registered: " . $username); // Debug message
+            header("Location: registration_success.php");
             exit();
         } else {
+            error_log("Registration failed: Could not register user."); // Debug message
             $error = "Could not register user. Please try again.";
         }
     }
 }
+ob_end_flush(); // Flush output buffer
 ?>
 
 <h2>Register</h2>
