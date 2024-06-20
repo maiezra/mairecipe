@@ -37,9 +37,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->bindParam(':dietary_restrictions', $dietary_restrictions);
         $stmt->bindParam(':meal_preferences', $meal_preferences);
         $stmt->bindParam(':newsletter', $newsletter);
+        header("Location: registration_success.php");
+            exit();
 
         if ($stmt->execute()) {
-            header("Location: registration_success.php");
             exit();
         } else {
             $error = "Could not register user. Please try again.";
