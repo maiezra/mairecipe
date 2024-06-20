@@ -42,7 +42,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if ($stmt->execute()) {
             error_log("User registered: " . $username); // Debug message
+            echo "Registration successful. Redirecting..."; // Temporary message for debugging
             header("Location: registration_success.php");
+            ob_end_flush(); // Flush output buffer
             exit();
         } else {
             error_log("Registration failed: Could not register user."); // Debug message
