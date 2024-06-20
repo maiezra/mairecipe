@@ -1,5 +1,4 @@
 <?php
-ob_start(); // Start output buffering
 require __DIR__ . '/includes/db.php';
 require __DIR__ . '/includes/functions.php';
 include __DIR__ . '/includes/header.php';
@@ -21,7 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $meal_preferences = implode(', ', $_POST['meal_preferences']);
     $newsletter = isset($_POST['newsletter']) ? 1 : 0;
 
-    // Validate password confirmation
     if ($password !== $confirm_password) {
         $error = "Passwords do not match.";
     } else {
@@ -41,16 +39,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->bindParam(':newsletter', $newsletter);
 
         if ($stmt->execute()) {
-            // Redirect to the success page
             header("Location: registration_success.php");
-            ob_end_flush(); // Flush output buffer
             exit();
         } else {
             $error = "Could not register user. Please try again.";
         }
     }
 }
-ob_end_flush(); // Flush output buffer
 ?>
 
 <h2>Register</h2>
