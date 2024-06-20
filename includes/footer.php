@@ -1,4 +1,4 @@
-<footer class="footer text-center">
+<footer class="footer foooter text-center">
     <div class="container">
         <div class="row">
             <!-- Footer Location-->
@@ -108,12 +108,10 @@ Clark, MO 65243</p>
 </body>
 </html>
 <style>
-  .footer{
-      .text-center {
-    display: block;
-    position: fixed;
+  .foooter{
+    display: block !important;
+    position: fixed !important;
     text-align: center !important;
-    bottom: 0;
-}
+    bottom: 0 !important;
   }   
 </style>
