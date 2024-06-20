@@ -18,13 +18,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['username'] = $user['username'];
         header("Location: dashboard.php");
+        exit();
     } else {
-        echo "Error: Invalid username or password.";
+        $error = "Invalid username or password.";
     }
 }
 ?>
 
 <h2>Login</h2>
+<?php if (isset($error)): ?>
+    <div class="alert alert-danger"><?php echo htmlspecialchars($error); ?></div>
+<?php endif; ?>
 <form method="POST" action="">
     <label for="username">Username:</label>
     <input type="text" name="username" required>
