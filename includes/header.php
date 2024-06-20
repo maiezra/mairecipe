@@ -34,7 +34,7 @@ session_start();
 </header>
 
     <style>
-    #header {
+    #head {
         margin-bottom: 3rem !important;
         
     }
