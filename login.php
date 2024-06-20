@@ -1,7 +1,7 @@
 <?php
-require 'includes/db.php';
-require 'includes/functions.php';
-include 'includes/header.php';
+require __DIR__ . '/includes/db.php';
+require __DIR__ . '/includes/functions.php';
+include __DIR__ . '/includes/header.php';
 
 session_start();
 
@@ -16,7 +16,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($user && password_verify($password, $user['password'])) {
         $_SESSION['user_id'] = $user['id'];
-        header("Location: index.php");
+        $_SESSION['username'] = $user['username'];
+        header("Location: dashboard.php");
     } else {
         echo "Error: Invalid username or password.";
     }
@@ -32,4 +33,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <button type="submit">Login</button>
 </form>
 
-<?php include 'includes/footer.php'; ?>
+<?php include __DIR__ . '/includes/footer.php'; ?>
