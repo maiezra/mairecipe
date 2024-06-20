@@ -110,8 +110,8 @@ Clark, MO 65243</p>
 <style>
   .foooter{
     display: block !important;
-    position: fixed !important;
     text-align: center !important;
     bottom: 0 !important;
+      margin-top: 9rem !important;
   }   
 </style>
