@@ -19,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($user && password_verify($password, $user['password'])) {
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['username'] = $user['username'];
+        error_log("User logged in: " . $_SESSION['username']); // Debug message
         header("Location: dashboard.php");
         exit();
     } else {
