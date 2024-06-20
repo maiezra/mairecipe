@@ -31,6 +31,8 @@ Clark, MO 65243</p>
 <div class="scroll-to-top d-lg-none position-fixed"><a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top"><i class="fa fa-chevron-up"></i></a></div>
 <!-- Bootstrap core JS-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+   <!-- Custom JS-->
+<script src="assets/js/scripts.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <!-- Third party plugin JS-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
@@ -104,7 +106,9 @@ Clark, MO 65243</p>
     });
   
 })(jQuery); // End of use strict
+ 
 </script>
+
 </body>
 </html>
 <style>
@@ -114,4 +118,5 @@ Clark, MO 65243</p>
     bottom: 0 !important;
       margin-top: 10rem !important;
   }   
+    
 </style>
