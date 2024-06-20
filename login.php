@@ -1,4 +1,5 @@
 <?php
+ob_start(); // Start output buffering
 require __DIR__ . '/includes/db.php';
 require __DIR__ . '/includes/functions.php';
 include __DIR__ . '/includes/header.php';
@@ -20,12 +21,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['username'] = $user['username'];
         error_log("User logged in: " . $_SESSION['username']); // Debug message
+        error_log("Redirecting to dashboard..."); // Debug message
         header("Location: dashboard.php");
         exit();
     } else {
+        error_log("Login failed: Invalid username or password."); // Debug message
         $error = "Invalid username or password.";
     }
 }
+ob_end_flush(); // Flush output buffer
 ?>
 
 <h2>Login</h2>
