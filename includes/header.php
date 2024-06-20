@@ -37,7 +37,7 @@ require_once __DIR__ . '/functions.php';
 
     <style>
     #head {
-        margin-bottom: 3rem !important;
+        margin-bottom: 13rem !important;
         
     }
     </style>
