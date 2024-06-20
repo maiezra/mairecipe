@@ -1,13 +1,15 @@
 <?php
+ob_start(); // Start output buffering
 require __DIR__ . '/includes/db.php';
 require __DIR__ . '/includes/functions.php';
 include __DIR__ . '/includes/header.php';
+
+session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
     $email = $_POST['email'];
     $birthdate = $_POST['birthdate'];
     $dietary_preferences = $_POST['dietary_preferences'];
@@ -21,8 +23,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Validate password confirmation
     if ($password != $confirm_password) {
-        echo "Passwords do not match.";
+        $error = "Passwords do not match.";
     } else {
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         $stmt = $conn->prepare("INSERT INTO users (username, password, email, birthdate, dietary_preferences, allergies, cooking_skill, cooking_frequency, favorite_cuisine, dietary_restrictions, meal_preferences, newsletter) VALUES (:username, :password, :email, :birthdate, :dietary_preferences, :allergies, :cooking_skill, :cooking_frequency, :favorite_cuisine, :dietary_restrictions, :meal_preferences, :newsletter)");
         $stmt->bindParam(':username', $username);
         $stmt->bindParam(':password', $hashed_password);
@@ -38,15 +41,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->bindParam(':newsletter', $newsletter);
 
         if ($stmt->execute()) {
-            header("Location: login.php");
+            error_log("User registered: " . $username); // Debug message
+            header("Location: registration_success.php");
+            exit();
         } else {
-            echo "Error: Could not register user.";
+            error_log("Registration failed: Could not register user."); // Debug message
+            $error = "Could not register user. Please try again.";
         }
     }
 }
+ob_end_flush(); // Flush output buffer
 ?>
 
 <h2>Register</h2>
+<?php if (isset($error)): ?>
+    <div class="alert alert-danger"><?php echo htmlspecialchars($error); ?></div>
+<?php endif; ?>
 <form id="signUpForm" method="POST" action="">
     <label for="username">Username:</label>
     <input type="text" id="username" name="username" required>
