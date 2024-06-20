@@ -19,75 +19,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $meal_preferences = implode(', ', $_POST['meal_preferences']);
     $newsletter = isset($_POST['newsletter']) ? 1 : 0;
 
-    // Handle file upload
-    $id_document = $_FILES['id_document'];
-    $target_dir = "uploads/";
-    $target_file = $target_dir . basename($id_document["name"]);
-    $upload_ok = 1;
-    $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-
     // Validate password confirmation
     if ($password != $confirm_password) {
         echo "Passwords do not match.";
-        $upload_ok = 0;
-    }
-
-    // Check if file is an actual image or fake image
-    $check = getimagesize($id_document["tmp_name"]);
-    if($check !== false) {
-        $upload_ok = 1;
     } else {
-        echo "File is not an image.";
-        $upload_ok = 0;
-    }
+        $stmt = $conn->prepare("INSERT INTO users (username, password, email, birthdate, dietary_preferences, allergies, cooking_skill, cooking_frequency, favorite_cuisine, dietary_restrictions, meal_preferences, newsletter) VALUES (:username, :password, :email, :birthdate, :dietary_preferences, :allergies, :cooking_skill, :cooking_frequency, :favorite_cuisine, :dietary_restrictions, :meal_preferences, :newsletter)");
+        $stmt->bindParam(':username', $username);
+        $stmt->bindParam(':password', $hashed_password);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':birthdate', $birthdate);
+        $stmt->bindParam(':dietary_preferences', $dietary_preferences);
+        $stmt->bindParam(':allergies', $allergies);
+        $stmt->bindParam(':cooking_skill', $cooking_skill);
+        $stmt->bindParam(':cooking_frequency', $cooking_frequency);
+        $stmt->bindParam(':favorite_cuisine', $favorite_cuisine);
+        $stmt->bindParam(':dietary_restrictions', $dietary_restrictions);
+        $stmt->bindParam(':meal_preferences', $meal_preferences);
+        $stmt->bindParam(':newsletter', $newsletter);
 
-    // Check file size
-    if ($id_document["size"] > 500000) {
-        echo "Sorry, your file is too large.";
-        $upload_ok = 0;
-    }
-
-    // Allow certain file formats
-    if($file_type != "jpg" && $file_type != "png" && $file_type != "jpeg" && $file_type != "gif" ) {
-        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-        $upload_ok = 0;
-    }
-
-    // Check if $upload_ok is set to 0 by an error
-    if ($upload_ok == 0) {
-        echo "Sorry, your file was not uploaded.";
-    // if everything is ok, try to upload file
-    } else {
-        if (move_uploaded_file($id_document["tmp_name"], $target_file)) {
-            $stmt = $conn->prepare("INSERT INTO users (username, password, email, birthdate, dietary_preferences, allergies, cooking_skill, cooking_frequency, favorite_cuisine, dietary_restrictions, meal_preferences, newsletter, id_document) VALUES (:username, :password, :email, :birthdate, :dietary_preferences, :allergies, :cooking_skill, :cooking_frequency, :favorite_cuisine, :dietary_restrictions, :meal_preferences, :newsletter, :id_document)");
-            $stmt->bindParam(':username', $username);
-            $stmt->bindParam(':password', $hashed_password);
-            $stmt->bindParam(':email', $email);
-            $stmt->bindParam(':birthdate', $birthdate);
-            $stmt->bindParam(':dietary_preferences', $dietary_preferences);
-            $stmt->bindParam(':allergies', $allergies);
-            $stmt->bindParam(':cooking_skill', $cooking_skill);
-            $stmt->bindParam(':cooking_frequency', $cooking_frequency);
-            $stmt->bindParam(':favorite_cuisine', $favorite_cuisine);
-            $stmt->bindParam(':dietary_restrictions', $dietary_restrictions);
-            $stmt->bindParam(':meal_preferences', $meal_preferences);
-            $stmt->bindParam(':newsletter', $newsletter);
-            $stmt->bindParam(':id_document', $target_file);
-
-            if ($stmt->execute()) {
-                header("Location: login.php");
-            } else {
-                echo "Error: Could not register user.";
-            }
+        if ($stmt->execute()) {
+            header("Location: login.php");
         } else {
-            echo "Sorry, there was an error uploading your file.";
+            echo "Error: Could not register user.";
         }
     }
 }
 ?>
 
 <h2>Register</h2>
-<form id="signUpForm" method="POST" action="" enctype="multipart/form-data">
+<form id="signUpForm" method="POST" action="">
     <label for="username">Username:</label>
     <input type="text" id="username" name="username" required>
     <p class="comment">Must be at least 3 characters long.</p>
@@ -179,9 +139,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <label for="newsletter">Subscribe to our newsletter:</label>
     <input type="checkbox" id="newsletter" name="newsletter" value="yes">
-
-    <label for="id_document">Upload ID Document:</label>
-    <input type="file" name="id_document" required>
 
     <button type="submit">Sign Up</button>
 </form>
