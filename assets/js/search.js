@@ -5,7 +5,12 @@ document.getElementById('searchForm').addEventListener('submit', function(event)
     resultsDiv.innerHTML = 'Searching...';
 
     fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`)
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
         .then(data => {
             resultsDiv.innerHTML = '';
             if (data.meals) {
@@ -33,7 +38,7 @@ document.getElementById('searchForm').addEventListener('submit', function(event)
             }
         })
         .catch(error => {
-            resultsDiv.textContent = 'An error occurred while searching.';
+            resultsDiv.textContent = `An error occurred while searching: ${error.message}`;
             console.error('Error fetching data from TheMealDB API:', error);
         });
 });
