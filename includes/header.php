@@ -36,3 +36,7 @@ require_once __DIR__ . '/functions.php';
         </div>
     </nav>
 </header>
+<style>
+    body{
+    margin-top: 15rem !important;}
+</style>
