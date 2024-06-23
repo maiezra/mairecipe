@@ -43,14 +43,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
-<h2>Reset Password</h2>
-<form method="POST" action="">
-    <input type="hidden" name="token" value="<?php echo htmlspecialchars($token); ?>">
-    <label for="password">New Password:</label>
-    <input type="password" name="password" required>
-    <label for="confirm_password">Confirm New Password:</label>
-    <input type="password" name="confirm_password" required>
-    <button type="submit">Reset Password</button>
-</form>
+<div class="container">
+    <h2>Reset Password</h2>
+    <form method="POST" action="">
+        <input type="hidden" name="token" value="<?php echo htmlspecialchars($token); ?>">
+        <div class="form-group">
+            <label for="password">New Password:</label>
+            <input type="password" name="password" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="confirm_password">Confirm New Password:</label>
+            <input type="password" name="confirm_password" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Reset Password</button>
+    </form>
+</div>
 
 <?php include __DIR__ . '/includes/footer.php'; ?>
