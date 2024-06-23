@@ -5,12 +5,7 @@ document.getElementById('searchForm').addEventListener('submit', function(event)
     resultsDiv.innerHTML = 'Searching...';
 
     fetch(`/proxy.php?s=${query}`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.json();
-        })
+        .then(response => response.json())
         .then(data => {
             resultsDiv.innerHTML = '';
             if (data.meals) {
@@ -33,6 +28,9 @@ document.getElementById('searchForm').addEventListener('submit', function(event)
 
                     resultsDiv.appendChild(mealDiv);
                 });
+            } else if (data.error) {
+                resultsDiv.textContent = `API Error: ${data.error}, HTTP Code: ${data.httpcode}, Curl Error: ${data.curl_error}`;
+                console.error('Detailed API error:', data);
             } else {
                 resultsDiv.textContent = 'No results found.';
             }
