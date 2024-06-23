@@ -29,11 +29,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
-<h2>Reset Password</h2>
-<form method="POST" action="">
-    <label for="email">Email:</label>
-    <input type="email" name="email" required>
-    <button type="submit">Send Reset Link</button>
-</form>
+<div class="container">
+    <h2>Reset Password</h2>
+    <form method="POST" action="">
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" name="email" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Send Reset Link</button>
+    </form>
+</div>
 
 <?php include __DIR__ . '/includes/footer.php'; ?>
