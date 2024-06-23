@@ -1,5 +1,4 @@
 <?php
-ob_start(); // Start output buffering
 require __DIR__ . '/includes/db.php';
 require __DIR__ . '/includes/functions.php';
 include __DIR__ . '/includes/header.php';
@@ -10,38 +9,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Prepare and execute the query to fetch user data
     $stmt = $conn->prepare("SELECT * FROM users WHERE username = :username");
     $stmt->bindParam(':username', $username);
     $stmt->execute();
     $user = $stmt->fetch();
 
-    // Verify the password and set session variables
     if ($user && password_verify($password, $user['password'])) {
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['username'] = $user['username'];
-        error_log("User logged in: " . $_SESSION['username']); // Debug message
-        error_log("Redirecting to dashboard..."); // Debug message
         header("Location: dashboard.php");
         exit();
     } else {
-        error_log("Login failed: Invalid username or password."); // Debug message
         $error = "Invalid username or password.";
     }
 }
-ob_end_flush(); // Flush output buffer
 ?>
 
-<h2>Login</h2>
-<?php if (isset($error)): ?>
-    <div class="alert alert-danger"><?php echo htmlspecialchars($error); ?></div>
-<?php endif; ?>
-<form method="POST" action="">
-    <label for="username">Username:</label>
-    <input type="text" name="username" required>
-    <label for="password">Password:</label>
-    <input type="password" name="password" required>
-    <button type="submit">Login</button>
-</form>
+<div class="container">
+    <h2>Login</h2>
+    <?php if (isset($error)): ?>
+        <div class="alert alert-danger"><?php echo htmlspecialchars($error); ?></div>
+    <?php endif; ?>
+    <form method="POST" action="">
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" name="username" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" name="password" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+</div>
 
 <?php include __DIR__ . '/includes/footer.php'; ?>
