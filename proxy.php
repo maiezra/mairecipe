@@ -16,6 +16,14 @@ if ($httpcode >= 200 && $httpcode < 300) {
     echo $response;
 } else {
     http_response_code($httpcode);
-    echo json_encode(['error' => 'Unable to fetch data from TheMealDB API', 'httpcode' => $httpcode, 'error' => $error]);
+    $errorMessage = [
+        'error' => 'Unable to fetch data from TheMealDB API',
+        'httpcode' => $httpcode,
+        'curl_error' => $error,
+        'response' => $response,
+        'url' => $url
+    ];
+    echo json_encode($errorMessage);
+    error_log(json_encode($errorMessage));  // Log the error for further investigation
 }
 ?>
