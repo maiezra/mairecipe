@@ -8,6 +8,7 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 $response = curl_exec($ch);
 $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+$error = curl_error($ch);
 curl_close($ch);
 
 if ($httpcode >= 200 && $httpcode < 300) {
@@ -15,6 +16,6 @@ if ($httpcode >= 200 && $httpcode < 300) {
     echo $response;
 } else {
     http_response_code($httpcode);
-    echo json_encode(['error' => 'Unable to fetch data from TheMealDB API']);
+    echo json_encode(['error' => 'Unable to fetch data from TheMealDB API', 'httpcode' => $httpcode, 'error' => $error]);
 }
 ?>
