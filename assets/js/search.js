@@ -4,7 +4,7 @@ document.getElementById('searchForm').addEventListener('submit', function(event)
     var resultsDiv = document.getElementById('results');
     resultsDiv.innerHTML = 'Searching...';
 
-    fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`)
+    fetch(`/proxy.php?s=${query}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
