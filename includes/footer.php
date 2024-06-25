@@ -4,8 +4,8 @@
             <!-- Footer Location-->
             <div class="col-lg-4 mb-5 mb-lg-0">
                 <h4 class="mb-4">LOCATION</h4>
-                <p class="pre-wrap lead mb-0">Tel-Aviv, Israel 
-                    Phone: 05467874354
+                <p class="pre-wrap lead mb-0">Tel-Aviv, Israel <br>
+                    Phone: 05467874354<br>
                     E-mail: Feedback@chefmate.com
                 </p>
             </div>
@@ -115,11 +115,12 @@
 </html>
 <style>
   .foooter{
-      background-color:#333
-    display: block !important;
+      background: #375755;
     text-align: center !important;
     bottom: 0 !important;
-      margin-top: 10rem !important;
+    margin-top: 10rem !important;
+    padding: 15%;
+
   }   
     
 </style>
