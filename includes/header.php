@@ -38,5 +38,10 @@ require_once __DIR__ . '/functions.php';
 </header>
 <style>
     body{
-    margin-top: 9rem !important;}
+    margin-top: 9rem !important;
+    font-family: "SB Heading"
+    background-color: #375755;
+    color: #ffff;
+    font-weight: 700;
+    }
 </style>
