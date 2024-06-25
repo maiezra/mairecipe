@@ -123,5 +123,9 @@
     color: #fff;
 
   }   
+    .text-white {
+    color: #fff !important;
+    background: #333 !important;
+}
     
 </style>
