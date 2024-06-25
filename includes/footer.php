@@ -115,11 +115,12 @@
 </html>
 <style>
   .foooter{
-      background: #375755;
+       background: #375755;
     text-align: center !important;
     bottom: 0 !important;
     margin-top: 10rem !important;
-    padding: 15%;
+    padding: 10%;
+    color: #fff;
 
   }   
     
