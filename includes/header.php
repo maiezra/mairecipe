@@ -40,7 +40,7 @@ require_once __DIR__ . '/functions.php';
     body{
     margin-top: 9rem !important;
         }
-    #maninNav{
+    #mainNav{
         backgroound-color: #375755;
         color: #ffff;
         font-family: "SB Heading", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, 
