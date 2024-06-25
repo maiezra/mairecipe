@@ -39,7 +39,7 @@ require_once __DIR__ . '/functions.php';
 <style>
     body{
     margin-top: 9rem !important;
-    }
+        }
     #maninNav{
         backgroound-color: #375755;
         color: #ffff;
@@ -47,5 +47,5 @@ require_once __DIR__ . '/functions.php';
             "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
             "Segoe UI Symbol", "Noto Color Emoji";
         font-weight: 700;
-        }
+            }
 </style>
