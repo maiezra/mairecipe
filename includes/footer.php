@@ -4,8 +4,10 @@
             <!-- Footer Location-->
             <div class="col-lg-4 mb-5 mb-lg-0">
                 <h4 class="mb-4">LOCATION</h4>
-                <p class="pre-wrap lead mb-0">2215 John Daniel Drive
-Clark, MO 65243</p>
+                <p class="pre-wrap lead mb-0">Tel-Aviv, Israel 
+                    Phone: 05467874354
+                    E-mail: Feedback@chefmate.com
+                </p>
             </div>
             <!-- Footer Social Icons-->
             <div class="col-lg-4 mb-5 mb-lg-0">
