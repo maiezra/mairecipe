@@ -41,9 +41,9 @@ require_once __DIR__ . '/functions.php';
     margin-top: 9rem !important;
         }
     #mainNav{
-        backgroound-color: #375755;
-        color: #ffff;
-     
-        font-weight: 700;
+        backgroound-color: #375755 !important;
+        color: #ffff!important;
+        font-family: "SB Heading" !important;
+        font-weight: 700!important;
             }
 </style>
